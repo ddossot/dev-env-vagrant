@@ -7,7 +7,7 @@ password="$(uuidgen)"
 
 # GECOS field (comma-separated)
 # Full name, Building and room number, Phone number, Other contact information
-gecos="${user^},,,"
+gecos="${user^} Hassam,,,"
 
 # primary group
 primary_group="users"
