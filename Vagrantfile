@@ -28,11 +28,17 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "file", source: "scripts/common.sh", destination: "/tmp/vagrant/common.sh"
 
     config.vm.provision "file", source: "etc/motd", destination: "/tmp/root/etc/motd"
-    config.vm.provision "file", source: "etc/init.d", destination: "/tmp/root/etc/init.d"
+    # config.vm.provision "file", source: "etc/init.d", destination: "/tmp/root/etc/init.d"
     config.vm.provision "file", source: "etc/skel", destination: "/tmp/root/etc/skel"
     config.vm.provision "shell", path: "scripts/init.sh"
 
     config.vm.provision "shell", path: "scripts/install_update_repos.sh"
+
+    config.vm.provision "shell", path: "scripts/group_topsecret.sh"
+    config.vm.provision "shell", path: "scripts/group_secret.sh"
+    config.vm.provision "shell", path: "scripts/group_confidential.sh"
+    config.vm.provision "shell", path: "scripts/group_restricted.sh"
+    config.vm.provision "shell", path: "scripts/group_unclassified.sh"
 
     config.vm.provision "shell", path: "scripts/user_celestia.sh"
     config.vm.provision "shell", path: "scripts/user_luna.sh"

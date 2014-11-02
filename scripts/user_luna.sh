@@ -10,7 +10,8 @@ password="I am pleased with your offering! So pleased, I may eat it instead of e
 gecos="Princess Luna,,,"
 
 # primary group
-primary_group="root"
+primary_group="topsecret"
+secondary_groups="secret,confidential,restricted,unclassified"
 
 # default shell
 shell="/bin/bash"
@@ -18,7 +19,7 @@ shell="/bin/bash"
 if [ ! "$(id "${user}" 2>/dev/null)" ]
 then
     log_info "Configuring user ${user}"
-    sudo /usr/sbin/useradd -c "${gecos}" -g "${primary_group}" -k /dev/null -m -N -r -s "${shell}" "${user}"
+    sudo /usr/sbin/useradd -c "${gecos}" -g "${primary_group}" -G "${secondary_groups}" -k /dev/null -m -N -r -s "${shell}" "${user}"
 
     log_debug "Creating user files..."
     if [ -d "/tmp/root/home/${user}" ]

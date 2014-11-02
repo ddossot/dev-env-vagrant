@@ -10,7 +10,8 @@ password="We are gathered here today to once again honor the heroism of these si
 gecos="Princess Celestia,,,"
 
 # primary group
-primary_group="root"
+primary_group="topsecret"
+secondary_groups="secret,confidential,restricted,unclassified"
 
 # default shell
 shell="/bin/bash"
@@ -18,7 +19,7 @@ shell="/bin/bash"
 if [ ! "$(id "${user}" 2>/dev/null)" ]
 then
     log_info "Configuring user ${user}"
-    sudo /usr/sbin/useradd -d /root -c "${gecos}" -g "${primary_group}" -M -N -o -r -s "${shell}" -u 0 "${user}"
+    sudo /usr/sbin/useradd -d /root -c "${gecos}" -g "${primary_group}" -G "${secondary_groups}" -M -N -o -r -s "${shell}" -u 0 "${user}"
 
     log_debug "Setting password for ${user}..."
     echo "${user}:${password}" | sudo /usr/sbin/chpasswd
