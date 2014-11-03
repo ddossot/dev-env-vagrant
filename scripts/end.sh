@@ -22,7 +22,7 @@ log_info "Updating sudoers..."
 if [ -r /tmp/root/etc/sudoers ]
 then
     migrate_file_root /tmp/root/etc/sudoers /etc/sudoers
-    sudo rm -f /tmp/root/etc/sudoers
+    sudo -u celestia rm -f /tmp/root/etc/sudoers
 fi
 
 if [ -d /tmp/root ]
