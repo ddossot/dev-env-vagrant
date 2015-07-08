@@ -10,7 +10,7 @@ fi
 
 log_debug "Cleaning up provisioned files..."
 if [ -f /tmp/DEFAULT_USER ]
-then 
+then
     rm -f /tmp/DEFAULT_USER
 fi
 if [ -d /tmp/vagrant ]
@@ -40,3 +40,10 @@ if [ -f /tmp/vagrant-shell ]
 then
     rm -f /tmp/vagrant-shell
 fi
+
+log_info "Unregistering chef-client and puppet..."
+sudo rcconf --off chef-client
+sudo rcconf --off puppet
+
+log_info "Cleaning up apt-get"
+sudo apt-get autoremove -y

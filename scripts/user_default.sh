@@ -3,7 +3,7 @@ source '/tmp/vagrant/common.sh'
 
 # user name
 user="${default_user}"
-password="$(uuidgen)"
+password="pwd"
 
 # GECOS field (comma-separated)
 # Full name, Building and room number, Phone number, Other contact information
