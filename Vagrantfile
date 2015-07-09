@@ -9,7 +9,8 @@ PROVISIONED = File.file?(".vagrant/machines/default/virtualbox/id")
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if PROVISIONED
     config.ssh.username = DEFAULT_USER
-    config.ssh.private_key_path = "~/.ssh/id_rsa"
+    config.ssh.password = DEFAULT_USER
+    #config.ssh.private_key_path = "~/.ssh/id_rsa"
     config.vm.synced_folder "~/dev", "/home/#{DEFAULT_USER}/dev", create: true
   end
 

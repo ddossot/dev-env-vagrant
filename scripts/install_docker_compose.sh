@@ -6,6 +6,7 @@ name="docker-compose"
 version=$1
 
 user="${default_user}"
+group="${default_group}"
 
 log_info "Installing ${name} version ${version}"
 
@@ -17,4 +18,4 @@ script="${target}/docker-compose"
 curl -L https://github.com/docker/compose/releases/download/${version}/docker-compose-`uname -s`-`uname -m` > "${script}"
 chmod +x "${script}"
 
-sudo chown -R "${user}:users" "${target}"
+sudo chown -R "${user}:${group}" "${target}"

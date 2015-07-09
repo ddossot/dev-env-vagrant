@@ -3,6 +3,7 @@ source '/tmp/vagrant/common.sh'
 
 version=$1
 user="${default_user}"
+group="${default_group}"
 
 # human readable name for the package
 name="jq ${version}"
@@ -26,5 +27,5 @@ then
   sudo "${installer[@]}" "${origin}" "${target}"
   sudo chmod +x "${target}/${package}"
   sudo ln -s "${target}/${package}" "${target}/${link}"
-  sudo chown -R "${user}:users" "${target}"
+  sudo chown -R "${user}:${group}" "${target}"
 fi

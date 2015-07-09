@@ -3,6 +3,7 @@ source '/tmp/vagrant/common.sh'
 
 version=$1
 user="${default_user}"
+group="${default_group}"
 
 # human readable name for the package
 name="Node.js ${version}"
@@ -25,7 +26,7 @@ then
   log_info "Installing ${name} from ${origin}"
   sudo mkdir -p "${target}"
   sudo "${installer[@]}" "${origin}" -C "${target}"
-  sudo chown -R "${user}:users" "${target}"
+  sudo chown -R "${user}:${group}" "${target}"
 
   priority="500"
 

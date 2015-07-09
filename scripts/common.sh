@@ -1,6 +1,8 @@
 #!/bin/bash -eu
 v=1
 default_user="$(cat /tmp/DEFAULT_USER)"
+default_password="${default_user}"
+default_group="$(id -gn "${default_user}" || echo "${default_user}")"
 
 function log_info {
     if [ ${v} -ge 1 ]
