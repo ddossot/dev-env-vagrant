@@ -10,19 +10,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   if PROVISIONED
     config.ssh.username = DEFAULT_USER
     config.ssh.password = DEFAULT_USER
-    #config.ssh.private_key_path = "~/.ssh/id_rsa"
+    # config.ssh.private_key_path = "~/.ssh/id_rsa"
     config.vm.synced_folder "~/dev", "/home/#{DEFAULT_USER}/dev", create: true
   end
 
   config.vm.box = "ubuntu/trusty64"
   config.vm.guest = :ubuntu
   # config.vm.network "forwarded_port", guest: 80, host: 8080
-  config.vm.network "public_network"
+  # config.vm.network "public_network", bridge: 'en0: Wi-Fi (AirPort)'
+  config.vm.network :private_network, ip: "192.168.101.101"
   config.ssh.forward_agent = true
   config.vm.synced_folder ".", "/vagrant", disabled: true
   config.vm.provider "virtualbox" do |vb|
     vb.cpus = 4
-    vb.memory = 2048
+    vb.memory = 4096
+    vb.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
   end
   config.vm.hostname = "development.vagrant"
 
@@ -44,20 +46,21 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Custom installers -------
   config.vm.provision "file", source: "data", destination: "/tmp"
   config.vm.provision "shell", path: "scripts/install_dev_tools.sh"
-  config.vm.provision "shell", path: "scripts/install_jq.sh", args: "1.4"
+  config.vm.provision "shell", path: "scripts/install_jq.sh", args: "1.5"
   config.vm.provision "shell", path: "scripts/install_jdk.sh", args: "6u45"
   config.vm.provision "shell", path: "scripts/install_jdk.sh", args: "7u79"
-  config.vm.provision "shell", path: "scripts/install_jdk.sh", args: "8u45"
+  config.vm.provision "shell", path: "scripts/install_jdk.sh", args: "8u60"
   config.vm.provision "shell", path: "scripts/install_maven.sh", args: "3.3.3"
   config.vm.provision "shell", path: "scripts/install_node.sh", args: "0.12.3"
   config.vm.provision "shell", path: "scripts/install_jenv.sh"
   config.vm.provision "shell", path: "scripts/install_lein.sh"
+  config.vm.provision "shell", path: "scripts/install_sbt.sh"
   config.vm.provision "shell", path: "scripts/install_rbenv.sh"
   config.vm.provision "shell", path: "scripts/install_ruby.sh", args: "2.2.2"
   config.vm.provision "shell", path: "scripts/install_travisci_cli.sh", args: "1.7.6"
   config.vm.provision "shell", path: "scripts/install_pyenv.sh"
   config.vm.provision "shell", path: "scripts/install_docker.sh"
-  config.vm.provision "shell", path: "scripts/install_docker_compose.sh", args: "1.2.0"
+  config.vm.provision "shell", path: "scripts/install_docker_compose.sh", args: "1.4.0"
   # -------------------------
 
   config.vm.provision "file", source: "etc/sudoers", destination: "/tmp/root/etc/sudoers"

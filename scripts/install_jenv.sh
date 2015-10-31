@@ -26,4 +26,5 @@ done
 jenv global 1.7
 
 jenv enable-plugin maven
+jenv enable-plugin sbt
 EOF

@@ -12,4 +12,7 @@ sudo apt-get install -y \
      traceroute \
      apache2-utils \
      pandoc \
-     libssl-dev zlibc libxml2-dev
+     texlive-latex-base texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended \
+     libssl-dev zlibc libxml2-dev libreadline-dev \
+     unzip \
+     libxml2-utils

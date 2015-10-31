@@ -19,7 +19,7 @@ If you use the scripts as is, you will need to download the following:
 - apache-maven-3.3.3-bin.tar.gz
 - jdk-6u45-linux-x64.tar.gz
 - jdk-7u79-linux-x64.tar.gz
-- jdk-8u45-linux-x64.tar.gz
+- jdk-8u60-linux-x64.tar.gz
 - jq-1.4-linux-x64
 - node-v0.12.3-linux-x64.tar.gz
 
